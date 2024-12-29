@@ -1,0 +1,19 @@
+{
+  "port": 3000,
+  "debug": true,
+  "serverUrl": "",
+  "account": {
+    "serverUrl": "",
+    "secretKey": "",
+    "secretValue": "",
+  }
+  "storage": {
+    "bucket": "",
+    "region": "",
+    "accessUrl": "",
+    "uploadPrefix": "",
+    "secretId": "",
+    "secretKey": "",
+    "endpoint": ""
+  }
+}
