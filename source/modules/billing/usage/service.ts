@@ -29,9 +29,14 @@ export function createBillingUsageService(db: PrismaClient) {
   async function createBillingUsage(userId: string, itemKey: string, data: s.ReportBillingUsageBody) {
     const dataList = Array.isArray(data) ? data : [data]
     const [billingUsage, error] = await catchP(db.billingUsage.createMany({
-      data: dataList.map(({ quantity, consumptionTime }) => (
-        { userId, itemKey, quantity, consumptionTime }
-      ))
+      data: dataList.map(({ quantity, consumptionTime, metadata }) => ({
+        userId,
+        itemKey,
+        quantity,
+        consumptionTime,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        metadata: metadata as any,
+      }))
     }))
 
     if (error != null) throw new UnknownErrorResponse(error)

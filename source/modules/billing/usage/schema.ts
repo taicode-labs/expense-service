@@ -19,7 +19,7 @@ export const ReportBillingUsagePramsSchema = z.object({
 
 const ReportBillingUsageItemSchema = z.object({
   quantity: BillingUsageSchema.shape.quantity,
-  metadata: BillingUsageSchema.shape.quantity.optional(),
+  metadata: BillingUsageSchema.shape.metadata.optional(),
   consumptionTime: BillingUsageSchema.shape.consumptionTime.optional(),
 })
 
