@@ -34,5 +34,5 @@ PeriodStats AS (
     GROUP BY ts."periodStart", ts."periodEnd"
 )
 -- 最终结果
-SELECT "periodEnd" as "consumptionTime", "periodUsage" as "quantity" FROM PeriodStats
+SELECT "periodStart" as "consumptionTime", "periodUsage" as "quantity" FROM PeriodStats
 ORDER BY "periodStart";

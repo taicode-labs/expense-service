@@ -6,6 +6,7 @@ export const BillingUsageSchema = z.object({
   userId: z.string(),
   itemKey: z.string(),
   quantity: z.number(),
+  metadata: z.unknown(),
   createdTime: z.string(),
   consumptionTime: z.string()
 })
@@ -18,6 +19,7 @@ export const ReportBillingUsagePramsSchema = z.object({
 
 const ReportBillingUsageItemSchema = z.object({
   quantity: BillingUsageSchema.shape.quantity,
+  metadata: BillingUsageSchema.shape.quantity.optional(),
   consumptionTime: BillingUsageSchema.shape.consumptionTime.optional(),
 })
 
