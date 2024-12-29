@@ -41,7 +41,7 @@ model BillingUsage {
   userId          String
   itemKey         String
   quantity        Int
-  metadata        Json
+  metadata        Json?
   createdTime     DateTime @default(now())
   consumptionTime DateTime @default(now())
 }
