@@ -46,7 +46,7 @@ export function createBillingItemService(db: PrismaClient) {
     }))
 
     if (error != null) throw new UnknownErrorResponse(error)
-    return getBillingItemByKey(billingItem.id)
+    return getBillingItemByKey(billingItem.key)
   }
 
   async function updateBillingItem(itemKey: string, data: s.UpdateBillingItemBody) {
@@ -59,7 +59,7 @@ export function createBillingItemService(db: PrismaClient) {
     }))
 
     if (error != null) throw new UnknownErrorResponse(error)
-    return getBillingItemByKey(billingItem.id)
+    return getBillingItemByKey(billingItem.key)
   }
 
   async function listBillingItem() {

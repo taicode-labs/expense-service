@@ -1,6 +1,7 @@
 import { FastifyPluginAsync } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 
+import { catchP } from '@helpers/catch'
 import { ErrorResponse } from '@helpers/error'
 import { ProductService } from '@modules/product'
 import { BillingItemService } from '@modules/billing/item'
@@ -35,8 +36,10 @@ export function createBillingItemRouter(options: BillingItemOptions): FastifyPlu
       const { name, price, productKey, description } = request.body
 
       await productService.getProductByKey(productKey)
-      const item = await billingItemService.getBillingItemByKey(itemKey)
+      const [item, error] = await catchP(billingItemService.getBillingItemByKey(itemKey))
+      if (error != null && ErrorResponse.is(error) && error.type != 'BILLING_ITEM_NOT_FOUND') throw error
       if (item != null) throw new ErrorResponse('BILLING_ITEM_ALREADY_EXISTS')
+
       const result = await billingItemService.createBillingItem(itemKey, { name, price, productKey, description })
       return createSuccessResponse(billingItemService.toPlain(result))
     })

@@ -3,7 +3,7 @@ import { listResponseSchema, responseSchema, routerSchema } from '@helpers/schem
 
 export const ProductSchema = z.object({
   id: z.string(),
-  key: z.string(),
+  key: z.string().regex(/^[a-z-]+$/),
   name: z.string(),
   description: z.string(),
   createdTime: z.string(),
